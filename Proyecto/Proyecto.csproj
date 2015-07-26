@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A37293F-DAFF-4450-9F99-9DE1A1875C87}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Proyecto</RootNamespace>
+    <AssemblyName>Proyecto</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="basura\Acerca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Acerca.Designer.cs">
+      <DependentUpon>Acerca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controladores\AbstractController.cs" />
+    <Compile Include="controladores\master\MasterController.cs" />
+    <Compile Include="controladores\ProductoController.cs" />
+    <Compile Include="controladores\ModeloController.cs" />
+    <Compile Include="controladores\TipoController.cs" />
+    <Compile Include="controladores\VentaController.cs" />
+    <Compile Include="basura\Corte_caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Corte_caja.Designer.cs">
+      <DependentUpon>Corte_caja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Eliminar_mercancia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Eliminar_mercancia.Designer.cs">
+      <DependentUpon>Eliminar_mercancia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Gestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Gestion.Designer.cs">
+      <DependentUpon>Gestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Inventario.Designer.cs">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Menuprincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Menuprincipal.Designer.cs">
+      <DependentUpon>Menuprincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modelos\decorated\VentaDecorado.cs" />
+    <Compile Include="modelos\entry\ContenidoVenta.cs" />
+    <Compile Include="modelos\entry\Modelo.cs" />
+    <Compile Include="modelos\entry\Producto.cs" />
+    <Compile Include="modelos\entry\Tipo.cs" />
+    <Compile Include="modelos\entry\Venta.cs" />
+    <Compile Include="basura\Modificar_mercancia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Modificar_mercancia.Designer.cs">
+      <DependentUpon>Modificar_mercancia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Nota_ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Nota_ventas.Designer.cs">
+      <DependentUpon>Nota_ventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Nueva_mercancia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Nueva_mercancia.Designer.cs">
+      <DependentUpon>Nueva_mercancia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Nuevo_articulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Nuevo_articulo.Designer.cs">
+      <DependentUpon>Nuevo_articulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="basura\Reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Reporte_ganancias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Reporte_ganancias.Designer.cs">
+      <DependentUpon>Reporte_ganancias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Reporte_ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Reporte_ventas.Designer.cs">
+      <DependentUpon>Reporte_ventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Salir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Salir.Designer.cs">
+      <DependentUpon>Salir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="servicios\Constantes.cs" />
+    <Compile Include="servicios\Inyector.cs" />
+    <Compile Include="servicios\MySQLContection.cs" />
+    <Compile Include="servicios\NotificationMessagess.cs" />
+    <Compile Include="basura\Vender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Vender.Designer.cs">
+      <DependentUpon>Vender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="basura\Ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basura\Ventas.Designer.cs">
+      <DependentUpon>Ventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\LoginViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vistas\LoginViewController.Designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\master\MasterViewController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\master\MasterViewController.Designer.cs">
+      <DependentUpon>MasterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\ModeloViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vistas\ModeloViewController.Designer.cs">
+      <DependentUpon>ModeloViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\ProductoViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vistas\ProductoViewController.Designer.cs">
+      <DependentUpon>ProductoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\TipoViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vistas\TipoViewController.Designer.cs">
+      <DependentUpon>TipoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\VentaViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vistas\VentaViewController.Designer.cs">
+      <DependentUpon>VentaViewController.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="basura\Corte_caja.resx">
+      <DependentUpon>Corte_caja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Eliminar_mercancia.resx">
+      <DependentUpon>Eliminar_mercancia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Gestion.resx">
+      <DependentUpon>Gestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Inventario.resx">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Menuprincipal.resx">
+      <DependentUpon>Menuprincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Modificar_mercancia.resx">
+      <DependentUpon>Modificar_mercancia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Nota_ventas.resx">
+      <DependentUpon>Nota_ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Nueva_mercancia.resx">
+      <DependentUpon>Nueva_mercancia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Nuevo_articulo.resx">
+      <DependentUpon>Nuevo_articulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="basura\Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Reporte_ganancias.resx">
+      <DependentUpon>Reporte_ganancias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Reporte_ventas.resx">
+      <DependentUpon>Reporte_ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Vender.resx">
+      <DependentUpon>Vender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basura\Ventas.resx">
+      <DependentUpon>Ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\LoginViewController.resx">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\master\MasterViewController.resx">
+      <DependentUpon>MasterViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\ModeloViewController.resx">
+      <DependentUpon>ModeloViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\ProductoViewController.resx">
+      <DependentUpon>ProductoViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\TipoViewController.resx">
+      <DependentUpon>TipoViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\VentaViewController.resx">
+      <DependentUpon>VentaViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cODICE_LOGIN.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menuprincipal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\a4.jpg" />
+    <None Include="Resources\icon_128.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
