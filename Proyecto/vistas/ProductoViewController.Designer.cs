@@ -95,6 +95,7 @@
             this.button3.TabIndex = 17;
             this.button3.Text = "Limpiar";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // mProductoSelector
             // 
@@ -104,6 +105,7 @@
             this.mProductoSelector.Name = "mProductoSelector";
             this.mProductoSelector.Size = new System.Drawing.Size(288, 32);
             this.mProductoSelector.TabIndex = 15;
+            this.mProductoSelector.SelectedIndexChanged += new System.EventHandler(this.mProductoSelector_SelectedIndexChanged);
             // 
             // label1
             // 

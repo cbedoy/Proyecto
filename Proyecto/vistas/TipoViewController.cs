@@ -83,6 +83,12 @@ namespace Proyecto.vistas
 
                 mCurrentTipo = mListaTipos.ElementAt(mTipoSelector.SelectedIndex);
 
+                mIdentificador.Text = mCurrentTipo != null ? mCurrentTipo.Identificador.ToString() : "";
+
+                mDescripcion.Text = mCurrentTipo != null ? mCurrentTipo.Descripcion.ToString() : "";
+
+                mNombre.Text = mCurrentTipo != null ? mCurrentTipo.Nombre.ToString() : "";
+
             }
         }
     }
