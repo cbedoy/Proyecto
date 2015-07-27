@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Proyecto.modelos;
+using Proyecto.vistas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Proyecto.controladores
 {
     class TipoController : AbstractController
     {
+        public TipoViewController presenter;
+
         public List<Tipo> obtenerTodosLosTiposDisponibles(){
             List<Tipo> tipos = new List<Tipo>();
 
@@ -26,6 +29,7 @@ namespace Proyecto.controladores
                     Tipo tipo = new Tipo();
                     tipo.Identificador = reader.GetInt32(0);
                     tipo.Nombre = reader.GetString(1);
+                    tipo.Descripcion = reader.GetString(2);
                     tipos.Add(tipo);
                 }
             }
@@ -35,26 +39,27 @@ namespace Proyecto.controladores
 
         public void agregarUnNuevoTipo(Tipo tipo)
         {
-            String sql = "insert into Tipo values(@id, @Nombre);";
+            String sql = "insert into Tipo values(@id, @Nombre, @Descripcion);";
 
             MySqlCommand command = new MySqlCommand(sql);
 
             command.Parameters.Add("@id", null);
-
             command.Parameters.Add("@Nombre", tipo.Nombre);
+            command.Parameters.Add("@Descripcion", tipo.Descripcion);
+
 
             sqlService.performNoQueryWithSQLComandAndNotification(command);
         }
 
         public void modifcarUnTipo(Tipo tipo)
         {
-            String sql = "update Tipo set idTipo = @id, Nombre = @Nombre;";
+            String sql = "update Tipo set idTipo = @id, Nombre = @Nombre, Descripcion = @Descripcion;";
 
             MySqlCommand command = new MySqlCommand(sql);
 
-            command.Parameters.Add("@id", tipo.Nombre);
-
+            command.Parameters.Add("@id", tipo.Identificador);
             command.Parameters.Add("@Nombre", tipo.Nombre);
+            command.Parameters.Add("@Descripcion", tipo.Descripcion);
 
             sqlService.performNoQueryWithSQLComandAndNotification(command);
         }

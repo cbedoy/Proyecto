@@ -1,6 +1,6 @@
-﻿namespace Proyecto.vistas
+﻿namespace Proyecto
 {
-    partial class VentaViewController
+    partial class InventoryViewController
     {
         /// <summary> 
         /// Variable del diseñador requerida.
@@ -28,19 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.mGridInventory = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.mGridInventory)).BeginInit();
             this.SuspendLayout();
             // 
-            // VentaViewController
+            // mGridInventory
+            // 
+            this.mGridInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mGridInventory.Location = new System.Drawing.Point(14, 19);
+            this.mGridInventory.Name = "mGridInventory";
+            this.mGridInventory.Size = new System.Drawing.Size(697, 438);
+            this.mGridInventory.TabIndex = 0;
+            // 
+            // InventoryViewController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "VentaViewController";
-            this.Size = new System.Drawing.Size(504, 357);
-            this.Load += new System.EventHandler(this.VentaViewController_Load);
+            this.Controls.Add(this.mGridInventory);
+            this.Name = "InventoryViewController";
+            this.Size = new System.Drawing.Size(734, 480);
+            this.Load += new System.EventHandler(this.InventoryViewController_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.mGridInventory)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView mGridInventory;
     }
 }

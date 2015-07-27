@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(815, 471);
             this.Name = "MasterViewController";
             this.Text = "MasterViewController";
+            this.Load += new System.EventHandler(this.MasterViewController_Load);
             this.ResumeLayout(false);
 
         }

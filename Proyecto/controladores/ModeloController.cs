@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Proyecto.modelos;
+using Proyecto.vistas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Proyecto.controladores
 {
     class ModeloController : AbstractController
     {
+        public ModeloViewController presenter;
+
         public List<Modelo> obtenerTodosLosModelosDisponibles()
         {
             List<Modelo> modelos = new List<Modelo>();
@@ -37,7 +40,29 @@ namespace Proyecto.controladores
 
         public void agregarUnNuevoModelo(Modelo modelo)
         {
+            String sql = "insert into Modelo values(@id, @Nombre);";
 
+            MySqlCommand command = new MySqlCommand(sql);
+
+            command.Parameters.Add("@id", null);
+
+            command.Parameters.Add("@Nombre", modelo.Talla);
+
+            sqlService.performNoQueryWithSQLComandAndNotification(command);
         }
+
+        public void modificarUnModelo(Modelo modelo)
+        {
+            String sql = "update Modelo set idModelo = @id, Talla = @Talla;";
+
+            MySqlCommand command = new MySqlCommand(sql);
+
+            command.Parameters.Add("@id", modelo.Identificador);
+
+            command.Parameters.Add("@Talla", modelo.Talla);
+
+            sqlService.performNoQueryWithSQLComandAndNotification(command);
+        }
+
     }
 }

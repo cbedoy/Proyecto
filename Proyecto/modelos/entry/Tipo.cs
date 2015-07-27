@@ -12,5 +12,7 @@ namespace Proyecto.modelos
         public int Identificador;
         //Nombre del tipo de producto, osea sirve para identificar si es un huarache, bolsa bla bla bla
         public String Nombre;
+        //
+        public String Descripcion;
     }
 }

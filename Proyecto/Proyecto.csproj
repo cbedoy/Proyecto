@@ -99,6 +99,12 @@
     <Compile Include="basura\Menuprincipal.Designer.cs">
       <DependentUpon>Menuprincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InventoryViewController.Designer.cs">
+      <DependentUpon>InventoryViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="modelos\decorated\VentaDecorado.cs" />
     <Compile Include="modelos\entry\ContenidoVenta.cs" />
     <Compile Include="modelos\entry\Modelo.cs" />
@@ -240,6 +246,9 @@
     <EmbeddedResource Include="basura\Nuevo_articulo.resx">
       <DependentUpon>Nuevo_articulo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryViewController.resx">
+      <DependentUpon>InventoryViewController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -283,6 +292,7 @@
     <EmbeddedResource Include="vistas\VentaViewController.resx">
       <DependentUpon>VentaViewController.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

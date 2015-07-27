@@ -9,21 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto.controladores;
 
-namespace Proyecto.vistas
+namespace Proyecto
 {
-    public partial class VentaViewController : UserControl
+    public partial class InventoryViewController : UserControl
     {
-        public VentaController controller;
+        private ProductoController controller;
 
-
-        public VentaViewController()
+        public InventoryViewController()
         {
             InitializeComponent();
         }
 
-        private void VentaViewController_Load(object sender, EventArgs e)
+        private void InventoryViewController_Load(object sender, EventArgs e)
         {
-
+            mGridInventory = controller.obtenerListaDeProductos();
         }
     }
 }
