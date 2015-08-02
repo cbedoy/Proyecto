@@ -75,5 +75,43 @@ namespace Proyecto.controladores
             return productos;
         }
 
+        public List<Producto> buscarProductoConCoincidencia(String concidencia)
+        {
+            List<Producto> productos = new List<Producto>();
+
+            //Query para buscar productos cuyo nombre contenga la concidencia por ejemplo
+            //Si la concidencia es huarache
+            //Y tienes productos como 
+            //huarache deportivo
+            //Super huarache
+            //huaracheloco
+            //Zapato deportivo
+            //Entonces te va a traer {huarache deportivo, huarachelo, super huarache}
+            //Y los pongo en la lista
+            String sql = "select * from Producto where Nombre Like '%" + concidencia + "%';";
+
+            MySqlCommand command = new MySqlCommand(sql);
+
+            MySqlDataReader reader = sqlService.performQueryWithSQLComand(command);
+
+            if (reader != null)
+            {
+                while (reader.Read())
+                {
+                    Producto producto = new Producto();
+                    producto.Identificador = reader.GetInt32(0);
+                    producto.Nombre = reader.GetString(1);
+                    producto.Stock = reader.GetInt32(2);
+                    producto.Costo = reader.GetFloat(3);
+                    producto.Precio = reader.GetFloat(4);
+                    producto.idTipo = reader.GetInt32(5);
+                    producto.idModelo = reader.GetInt32(6);
+
+                    productos.Add(producto);
+                }
+            }
+
+            return productos;
+        }
     }
 }

@@ -105,6 +105,7 @@
     <Compile Include="InventoryViewController.Designer.cs">
       <DependentUpon>InventoryViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="modelos\decorated\ProductoVenta.cs" />
     <Compile Include="modelos\decorated\VentaDecorado.cs" />
     <Compile Include="modelos\entry\ContenidoVenta.cs" />
     <Compile Include="modelos\entry\Modelo.cs" />

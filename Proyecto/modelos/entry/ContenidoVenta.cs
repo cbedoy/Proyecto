@@ -14,5 +14,13 @@ namespace Proyecto.modelos
         public int idProducto;
         //Tambien a que venta pertenece, de aquí nace la magia
         public int idVenta;
+
+        public int cantidad;
+
+        public float precioUnitario;
+
+        public float costoUnitario;
+
+
     }
 }

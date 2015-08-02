@@ -8,7 +8,7 @@ namespace Proyecto.servicios
 {
     class Constantes
     {
-        public static float IVA = 17.7f;
+        public static float IVA = 0.15f;
 
         public static String USERNAME = "ALEX";
 
