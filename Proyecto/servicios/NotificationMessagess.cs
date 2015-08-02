@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Proyecto.servicios
 {
-    class NotificationMessagess
+    public class NotificationMessagess
     {
         public void showTitleAndMessage(String title, String message)
         {

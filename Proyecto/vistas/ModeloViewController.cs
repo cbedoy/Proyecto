@@ -14,7 +14,12 @@ namespace Proyecto.vistas
 {
     public partial class ModeloViewController : UserControl
     {
-        public ModeloController controller;
+        private ModeloController mBusinessController;
+
+        public void setBusinessController(ModeloController controller)
+        {
+            mBusinessController = controller;
+        }
 
         private List<Modelo> mModeloList;
 
@@ -27,7 +32,7 @@ namespace Proyecto.vistas
 
         private void ModeloViewController_Load(object sender, EventArgs e)
         {
-            mModeloList = controller.obtenerTodosLosModelosDisponibles();
+            mModeloList = mBusinessController.obtenerTodosLosModelosDisponibles();
 
             foreach (Modelo elModeloPedorro in mModeloList)
             {
@@ -40,7 +45,7 @@ namespace Proyecto.vistas
             Modelo modelo = new Modelo();
             modelo.Talla = mNombre.Text;
 
-            controller.agregarUnNuevoModelo(modelo);
+            mBusinessController.agregarUnNuevoModelo(modelo);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,7 +54,7 @@ namespace Proyecto.vistas
             modelo.Identificador = int.Parse(mIdentificador.Text);
             modelo.Talla = mNombre.Text;
 
-            controller.modificarUnModelo(modelo);
+            mBusinessController.modificarUnModelo(modelo);
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -87,13 +87,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LimeGreen;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mLogin);
             this.Controls.Add(this.mPassword);
             this.Controls.Add(this.mUsername);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "LoginViewController";
-            this.Size = new System.Drawing.Size(402, 194);
+            this.Size = new System.Drawing.Size(400, 192);
             this.Load += new System.EventHandler(this.LoginViewController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

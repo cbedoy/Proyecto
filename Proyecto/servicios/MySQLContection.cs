@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.servicios
 {
-    class MySQLContection
+    public class MySQLContection
     {
         private NotificationMessagess notificationMessages;
 

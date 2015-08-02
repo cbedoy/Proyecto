@@ -16,6 +16,37 @@ namespace Proyecto.vistas
 
         private MasterController masterController;
 
+        private ModeloViewController mModeloViewController;
+        private ProductoViewController mProductoViewController;
+        private TipoViewController mTipoViewController;
+        private VentaViewController mVentaViewController;
+        private LoginViewController mLoginViewController;
+
+        public void setViewController(ModeloViewController viewController)
+        {
+            mModeloViewController = viewController;
+        }
+
+        public void setViewController(ProductoViewController viewController)
+        {
+            mProductoViewController = viewController;
+        }
+
+        public void setViewController(TipoViewController viewController)
+        {
+            mTipoViewController = viewController;
+        }
+
+        public void setViewController(VentaViewController viewController)
+        {
+            mVentaViewController = viewController;
+        }
+
+        public void setViewController(LoginViewController viewController)
+        {
+            mLoginViewController = viewController;
+        }
+
         public MasterViewController()
         {
             InitializeComponent();
@@ -28,7 +59,22 @@ namespace Proyecto.vistas
 
         public void presentViewController(Control control)
         {
+            mFormContainer.Controls.Clear();
 
+            control.Left = (mFormContainer.Width - control.Width) / 2;
+            control.Top = (mFormContainer.Height - control.Height) / 2;
+
+            mFormContainer.Controls.Add(control);
+        }
+
+        public void init()
+        {
+            presentViewController(mLoginViewController);
+        }
+
+        public void usuarioAutentificado()
+        {
+            mFormContainer.Controls.Clear();
         }
     }
 }

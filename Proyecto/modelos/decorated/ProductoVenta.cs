@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.modelos.decorated
 {
-    class ProductoVenta
+    public class ProductoVenta
     {
         public int Identificador;
         public String Nombre;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.modelos
 {
-    class ContenidoVenta
+    public class ContenidoVenta
     {
         //Identificador autoincremental
         public int Identificador;
@@ -20,7 +20,5 @@ namespace Proyecto.modelos
         public float precioUnitario;
 
         public float costoUnitario;
-
-
     }
 }

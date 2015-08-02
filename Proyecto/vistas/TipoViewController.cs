@@ -14,7 +14,12 @@ namespace Proyecto.vistas
 {
     public partial class TipoViewController : UserControl
     {
-        public TipoController controller;
+        private TipoController mController;
+
+        public void setBusinessController(TipoController controller)
+        {
+            mController = controller;
+        }
 
         private Tipo mCurrentTipo;
 
@@ -30,7 +35,7 @@ namespace Proyecto.vistas
             //Antes de inciar la ventana o de recargar la venta
             //Se llena en automatico con informacion sobre los tipos
 
-            mListaTipos = controller.obtenerTodosLosTiposDisponibles();
+            mListaTipos = mController.obtenerTodosLosTiposDisponibles();
 
             foreach (Tipo elTipo in mListaTipos)
             {
@@ -47,7 +52,7 @@ namespace Proyecto.vistas
             tipo.Descripcion = mDescripcion.Text;
             tipo.Nombre = mNombre.Text;
 
-            controller.agregarUnNuevoTipo(tipo);
+            mController.agregarUnNuevoTipo(tipo);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,7 +63,7 @@ namespace Proyecto.vistas
             tipo.Descripcion = mDescripcion.Text;
             tipo.Nombre = mNombre.Text;
 
-            controller.agregarUnNuevoTipo(tipo);
+            mController.agregarUnNuevoTipo(tipo);
         }
 
         private void button3_Click(object sender, EventArgs e)

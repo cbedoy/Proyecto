@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace Proyecto.controladores
 {
-    class AbstractController
+    public class AbstractController
     {
-        public MySQLContection sqlService;
+        protected MySQLContection mSQLService;
+
+        public void setSQLService(MySQLContection service)
+        {
+            mSQLService = service;
+        }
     }
 }

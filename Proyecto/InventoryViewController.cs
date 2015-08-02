@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto.controladores;
+using Proyecto.modelos;
 
 namespace Proyecto
 {
     public partial class InventoryViewController : UserControl
     {
-        private ProductoController controller;
+        private ProductoController mController;
 
         public InventoryViewController()
         {
@@ -22,7 +23,9 @@ namespace Proyecto
 
         private void InventoryViewController_Load(object sender, EventArgs e)
         {
-            mGridInventory = controller.obtenerListaDeProductos();
+            List<Producto> productoList = mController.obtenerListaDeProductos();
+
+            
         }
     }
 }

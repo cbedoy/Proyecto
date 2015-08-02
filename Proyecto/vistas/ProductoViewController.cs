@@ -15,9 +15,9 @@ namespace Proyecto.vistas
 {
     public partial class ProductoViewController : UserControl
     {
-        public ProductoController controller;
-        public TipoController tipoController;
-        public ModeloController modeloController;
+        private ProductoController mBusinessController;
+        private TipoController mTipoController;
+        private ModeloController mModeloController;
 
         private List<Tipo> mTiposList;
         private List<Modelo> mModeloList;
@@ -29,6 +29,24 @@ namespace Proyecto.vistas
 
         public NotificationMessagess notificationMesagess;
 
+
+        public void setBusinessController(ProductoController controller)
+        {
+            mBusinessController = controller;
+        }
+
+        public void setBusinessController(TipoController controller)
+        {
+            mTipoController = controller;
+        }
+
+
+        public void setBusinessController(ModeloController controller)
+        {
+            mModeloController = controller;
+        }
+
+
         public ProductoViewController()
         {
             InitializeComponent();
@@ -37,7 +55,7 @@ namespace Proyecto.vistas
         private void ProductoViewController_Load(object sender, EventArgs e)
         {
             //El backend hace el query 
-            mTiposList = tipoController.obtenerTodosLosTiposDisponibles();
+            mTiposList = mTipoController.obtenerTodosLosTiposDisponibles();
 
             //Iteras y pones valores
             foreach(Tipo unTipoPitero in mTiposList){
@@ -45,7 +63,7 @@ namespace Proyecto.vistas
             }
 
             //El backend hace el query 
-            mModeloList = modeloController.obtenerTodosLosModelosDisponibles();
+            mModeloList = mModeloController.obtenerTodosLosModelosDisponibles();
             //Iteras y pones valores
             foreach (Modelo unModeloCulero in mModeloList)
             {
@@ -53,7 +71,7 @@ namespace Proyecto.vistas
             }
 
             //El backend hace el query 
-            mProductoList = controller.obtenerListaDeProductos();
+            mProductoList = mBusinessController.obtenerListaDeProductos();
             //Iteras y pones valores
             foreach (Producto unProductoFellote in mProductoList)
             {
@@ -90,7 +108,7 @@ namespace Proyecto.vistas
                     return;
                 }
 
-                controller.agregarProducto(producto, mCurrentTipo, mCurrentModelo);
+                mBusinessController.agregarProducto(producto, mCurrentTipo, mCurrentModelo);
             }
         }
 
@@ -119,7 +137,7 @@ namespace Proyecto.vistas
             producto.Precio = float.Parse(mPrecio.Text);
             producto.Stock = int.Parse(mStock.Text);
 
-            controller.modificarProducto(producto);
+            mBusinessController.modificarProducto(producto);
         }
 
         private void button3_Click(object sender, EventArgs e)

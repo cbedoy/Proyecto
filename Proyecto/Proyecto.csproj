@@ -163,7 +163,6 @@
       <DependentUpon>Salir.cs</DependentUpon>
     </Compile>
     <Compile Include="servicios\Constantes.cs" />
-    <Compile Include="servicios\Inyector.cs" />
     <Compile Include="servicios\MySQLContection.cs" />
     <Compile Include="servicios\NotificationMessagess.cs" />
     <Compile Include="basura\Vender.cs">

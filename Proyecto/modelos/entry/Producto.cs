@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.modelos
 {
-    class Producto
+    public class Producto
     {
         //Identificador automatico
         public int Identificador;

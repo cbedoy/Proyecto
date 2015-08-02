@@ -13,6 +13,13 @@ namespace Proyecto.vistas
 {
     public partial class LoginViewController : UserControl
     {
+        private MasterViewController mMasterViewController;
+
+        public void setMasterViewController(MasterViewController masterController)
+        {
+            mMasterViewController = masterController;
+        }
+
         public LoginViewController()
         {
             InitializeComponent();
@@ -20,7 +27,7 @@ namespace Proyecto.vistas
 
         private void LoginViewController_Load(object sender, EventArgs e)
         {
-            mLogin.Text = Constantes.USERNAME;
+            mUsername.Text = Constantes.USERNAME;
 
             mPassword.Text = Constantes.PASSOWORD;
         }
@@ -29,7 +36,7 @@ namespace Proyecto.vistas
         {
             if (mLogin.Text == Constantes.USERNAME && mPassword.Text == Constantes.USERNAME)
             {
-                Master
+                mMasterViewController.usuarioAutentificado();
             }
         }
     }

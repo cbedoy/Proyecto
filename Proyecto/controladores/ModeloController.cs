@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace Proyecto.controladores
 {
-    class ModeloController : AbstractController
+    public class ModeloController : AbstractController
     {
-        public ModeloViewController presenter;
+        private ModeloViewController mPresenter;
+
+        public void setPresenter(ModeloViewController presenter)
+        {
+            mPresenter = presenter;
+        }
 
         public List<Modelo> obtenerTodosLosModelosDisponibles()
         {
@@ -21,7 +26,7 @@ namespace Proyecto.controladores
 
             MySqlCommand command = new MySqlCommand(sql);
 
-            MySqlDataReader reader = sqlService.performQueryWithSQLComand(command);
+            MySqlDataReader reader = mSQLService.performQueryWithSQLComand(command);
 
             if (reader != null)
             {
@@ -48,7 +53,7 @@ namespace Proyecto.controladores
 
             command.Parameters.Add("@Nombre", modelo.Talla);
 
-            sqlService.performNoQueryWithSQLComandAndNotification(command);
+            mSQLService.performNoQueryWithSQLComandAndNotification(command);
         }
 
         public void modificarUnModelo(Modelo modelo)
@@ -61,7 +66,7 @@ namespace Proyecto.controladores
 
             command.Parameters.Add("@Talla", modelo.Talla);
 
-            sqlService.performNoQueryWithSQLComandAndNotification(command);
+            mSQLService.performNoQueryWithSQLComandAndNotification(command);
         }
 
     }

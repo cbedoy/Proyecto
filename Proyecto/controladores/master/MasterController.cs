@@ -8,45 +8,50 @@ using System.Threading.Tasks;
 
 namespace Proyecto.controladores
 {
-    class MasterController
+    public class MasterController
     {
-        private MasterViewController mViewController;
-
-        private ModeloViewController mModeloViewController;
-
-        private ProductoViewController mProductoViewController;
-
-        private TipoViewController mTipoViewController;
-
-        private VentaViewController mVentaViewController;
-
-        public MasterController(MasterViewController viewController)
+        public MasterController(MasterViewController masterViewController)
         {
             NotificationMessagess notificationMessages = new NotificationMessagess();
             MySQLContection SQLService = new MySQLContection();
             SQLService.setNotificationMessages(notificationMessages);
-            mViewController = viewController;
 
-            ModeloController modeloController = new ModeloController();
-            mModeloViewController = new ModeloViewController();
-            modeloController.sqlService = SQLService;
-            modeloController.presenter = mModeloViewController;
-            mModeloViewController.controller = modeloController;
+            ModeloController modeloBusinessController = new ModeloController();
+            ModeloViewController modeloViewController = new ModeloViewController();
+            modeloBusinessController.setSQLService(SQLService);
+            modeloBusinessController.setPresenter(modeloViewController);
+            modeloViewController.setBusinessController(modeloBusinessController);
 
-            ProductoController productoController = new ProductoController();
-            mProductoViewController = new ProductoViewController();
-            productoController.sqlService = SQLService;
-            productoController.presenter = mProductoViewController;
-            mProductoViewController.controller = productoController;
+            TipoController tipoBusinessController = new TipoController();
+            TipoViewController tipoViewController = new TipoViewController();
+            tipoBusinessController.setSQLService(SQLService);
+            tipoBusinessController.setPresenter(tipoViewController);
+            tipoViewController.setBusinessController(tipoBusinessController);
 
-            TipoController tipoController = new TipoController();
-            mTipoViewController = new TipoViewController();
-            tipoController.sqlService = SQLService;
-            tipoController.presenter = mTipoViewController;
-            mTipoViewController.controller = tipoController;
+            ProductoController productoBusinessController = new ProductoController();
+            ProductoViewController productoViewController = new ProductoViewController();
+            productoBusinessController.setSQLService(SQLService);
+            productoBusinessController.setPresenter(productoViewController);
+            productoViewController.setBusinessController(productoBusinessController);
+            productoViewController.setBusinessController(tipoBusinessController);
+            productoViewController.setBusinessController(modeloBusinessController);
 
-            VentaController ventaController = new VentaController();
-            ventaController.sqlService = SQLService;     
+            VentaController ventaBusinessController = new VentaController();
+            VentaViewController ventaViewController = new VentaViewController();
+            ventaBusinessController.setSQLService(SQLService);
+            ventaBusinessController.setPresenter(ventaViewController);
+            ventaViewController.setBusinessController(ventaBusinessController);
+            ventaViewController.setBusinessController(productoBusinessController);
+
+            LoginViewController loginViewController = new LoginViewController();
+
+            masterViewController.setViewController(modeloViewController);
+            masterViewController.setViewController(tipoViewController);
+            masterViewController.setViewController(productoViewController);
+            masterViewController.setViewController(ventaViewController);
+            masterViewController.setViewController(loginViewController);
+
+            masterViewController.init();
         }
     }
 }

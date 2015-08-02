@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto.modelos
 {
-    class Venta
+    public class Venta
     {
         //Autoincremental
         public int Identificador;

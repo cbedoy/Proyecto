@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace Proyecto.controladores
 {
-    class TipoController : AbstractController
+    public class TipoController : AbstractController
     {
-        public TipoViewController presenter;
+        private TipoViewController mPresenter;
+
+        public void setPresenter(TipoViewController presenter)
+        {
+            mPresenter = presenter;
+        }
 
         public List<Tipo> obtenerTodosLosTiposDisponibles(){
             List<Tipo> tipos = new List<Tipo>();
@@ -20,7 +25,7 @@ namespace Proyecto.controladores
 
             MySqlCommand command = new MySqlCommand(sql);
 
-            MySqlDataReader reader = sqlService.performQueryWithSQLComand(command);
+            MySqlDataReader reader = mSQLService.performQueryWithSQLComand(command);
 
             if (reader != null)
             {
@@ -48,7 +53,7 @@ namespace Proyecto.controladores
             command.Parameters.Add("@Descripcion", tipo.Descripcion);
 
 
-            sqlService.performNoQueryWithSQLComandAndNotification(command);
+            mSQLService.performNoQueryWithSQLComandAndNotification(command);
         }
 
         public void modifcarUnTipo(Tipo tipo)
@@ -61,7 +66,7 @@ namespace Proyecto.controladores
             command.Parameters.Add("@Nombre", tipo.Nombre);
             command.Parameters.Add("@Descripcion", tipo.Descripcion);
 
-            sqlService.performNoQueryWithSQLComandAndNotification(command);
+            mSQLService.performNoQueryWithSQLComandAndNotification(command);
         }
     }
 }

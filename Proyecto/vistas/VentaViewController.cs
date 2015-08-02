@@ -16,21 +16,27 @@ namespace Proyecto.vistas
 {
     public partial class VentaViewController : UserControl
     {
-        public VentaController controller;
+        private VentaController mBusinessController;
+        private ProductoController mProductoController;
 
         private Venta mCurrentVenta;
-
-
-        public ProductoController productoController;
-
         private List<Producto> mProductoList;
-
         private List<Producto> mProductosSeleccionados;
         private List<ProductoVenta> mProductosSeleccionadosVenta;
 
         private Producto mProductoActualSeleccionado;
 
         private float mTotalAPagar;
+
+        public void setBusinessController(VentaController controller)
+        {
+            mBusinessController = controller;
+        }
+
+        public void setBusinessController(ProductoController controller)
+        {
+            mProductoController = controller;
+        }
 
         public VentaViewController()
         {
@@ -39,7 +45,7 @@ namespace Proyecto.vistas
 
         private void VentaViewController_Load(object sender, EventArgs e)
         {
-            mProductoList = productoController.obtenerListaDeProductos();
+            mProductoList = mProductoController.obtenerListaDeProductos();
 
             foreach (Producto unProducto in mProductoList)
             {
@@ -76,7 +82,7 @@ namespace Proyecto.vistas
         {
             String concidencia = mProductoBuscador.Text;
 
-            List<Producto> template = productoController.buscarProductoConCoincidencia(concidencia);
+            List<Producto> template = mProductoController.buscarProductoConCoincidencia(concidencia);
 
             //Valido si la busqueda trae por lo menos un elemento si no tiene nada, pues ignoro la busqueda
             //Osea no hay concidencias
@@ -158,8 +164,7 @@ namespace Proyecto.vistas
 
         private void mConfirmarPagoAction_Click(object sender, EventArgs e)
         {
-            try
-            {
+
                 float pago = float.Parse(mPagoCliente.Text);
 
                 if (pago < mTotalAPagar)
@@ -179,22 +184,20 @@ namespace Proyecto.vistas
                     foreach(ProductoVenta unProductoDeQueSeVaAVender in mProductosSeleccionadosVenta){
                         ContenidoVenta contenidoVenta = new ContenidoVenta();
                         contenidoVenta.idProducto = unProductoDeQueSeVaAVender.Identificador;
-
+                        contenidoVenta.cantidad = unProductoDeQueSeVaAVender.Cantidad;
+                        contenidoVenta.costoUnitario = unProductoDeQueSeVaAVender.Costo;
+                        contenidoVenta.precioUnitario = unProductoDeQueSeVaAVender.Precio;
+                        contenidosDeLaVenta.Add(contenidoVenta);
                     }
 
 
 
-                    controller.agregarUnaNuevaAlHistorial
+                    mBusinessController.agregarUnaNuevaAlHistorial(mCurrentVenta, contenidosDeLaVenta);
 
                 }
 
-            }
-            catch (InvalidCastException e)
-            { 
-                //Error we
-                String m = e.Message;
-
-            }
+            
+            
 
         }
 

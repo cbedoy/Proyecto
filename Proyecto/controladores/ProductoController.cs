@@ -9,9 +9,15 @@ using System.Threading.Tasks;
 
 namespace Proyecto.controladores
 {
-    class ProductoController : AbstractController
+    public class ProductoController : AbstractController
     {
-        public ProductoViewController presenter;
+        private ProductoViewController mPresenter;
+
+        public void setPresenter(ProductoViewController presenter)
+        {
+            mPresenter = presenter;
+        }
+
 
         public void agregarProducto(Producto producto, Tipo tipo, Modelo modelo)
         {
@@ -27,7 +33,7 @@ namespace Proyecto.controladores
             command.Parameters.Add("@Tipo", tipo.Identificador);
             command.Parameters.Add("@Modelo", modelo.Identificador);
 
-            sqlService.performNoQueryWithSQLComandAndNotification(command);
+            mSQLService.performNoQueryWithSQLComandAndNotification(command);
         }
 
         public void modificarProducto(Producto producto)
@@ -40,7 +46,7 @@ namespace Proyecto.controladores
             command.Parameters.Add("@Costo", producto.Costo);
             command.Parameters.Add("@Precio", producto.Precio);
 
-            sqlService.performNoQueryWithSQLComandAndNotification(command);
+            mSQLService.performNoQueryWithSQLComandAndNotification(command);
 
         }
 
@@ -52,7 +58,7 @@ namespace Proyecto.controladores
 
             MySqlCommand command = new MySqlCommand(sql);
 
-            MySqlDataReader reader = sqlService.performQueryWithSQLComand(command);
+            MySqlDataReader reader = mSQLService.performQueryWithSQLComand(command);
 
             if (reader != null)
             {
@@ -92,7 +98,7 @@ namespace Proyecto.controladores
 
             MySqlCommand command = new MySqlCommand(sql);
 
-            MySqlDataReader reader = sqlService.performQueryWithSQLComand(command);
+            MySqlDataReader reader = mSQLService.performQueryWithSQLComand(command);
 
             if (reader != null)
             {
