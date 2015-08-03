@@ -9,10 +9,10 @@ namespace Proyecto.modelos
     public class Tipo
     {
         //Identificador autoincremental
-        public int Identificador;
+        public int Identificador { get; set; }
         //Nombre del tipo de producto, osea sirve para identificar si es un huarache, bolsa bla bla bla
-        public String Nombre;
+        public String Nombre { get; set; }
         //
-        public String Descripcion;
+        public String Descripcion { get; set; }
     }
 }

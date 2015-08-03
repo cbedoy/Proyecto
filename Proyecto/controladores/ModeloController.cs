@@ -58,7 +58,7 @@ namespace Proyecto.controladores
 
         public void modificarUnModelo(Modelo modelo)
         {
-            String sql = "update Modelo set idModelo = @id, Talla = @Talla;";
+            String sql = "update Modelo set Talla = @Talla where idModelo = @id;";
 
             MySqlCommand command = new MySqlCommand(sql);
 

@@ -58,7 +58,7 @@ namespace Proyecto.controladores
 
         public void modifcarUnTipo(Tipo tipo)
         {
-            String sql = "update Tipo set idTipo = @id, Nombre = @Nombre, Descripcion = @Descripcion;";
+            String sql = "update Tipo set Nombre = @Nombre, Descripcion = @Descripcion where idTipo = @id;";
 
             MySqlCommand command = new MySqlCommand(sql);
 

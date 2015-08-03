@@ -13,7 +13,7 @@ using Proyecto.servicios;
 
 namespace Proyecto.vistas
 {
-    public partial class ProductoViewController : UserControl
+    public partial class ProductoViewController : UserControl, IViewController
     {
         private ProductoController mBusinessController;
         private TipoController mTipoController;
@@ -54,31 +54,7 @@ namespace Proyecto.vistas
 
         private void ProductoViewController_Load(object sender, EventArgs e)
         {
-            //El backend hace el query 
-            mTiposList = mTipoController.obtenerTodosLosTiposDisponibles();
-
-            //Iteras y pones valores
-            foreach(Tipo unTipoPitero in mTiposList){
-                mTipoSelector.Items.Add(unTipoPitero.Nombre);
-            }
-
-            //El backend hace el query 
-            mModeloList = mModeloController.obtenerTodosLosModelosDisponibles();
-            //Iteras y pones valores
-            foreach (Modelo unModeloCulero in mModeloList)
-            {
-                mTipoSelector.Items.Add(unModeloCulero.Talla);
-            }
-
-            //El backend hace el query 
-            mProductoList = mBusinessController.obtenerListaDeProductos();
-            //Iteras y pones valores
-            foreach (Producto unProductoFellote in mProductoList)
-            {
-                mTipoSelector.Items.Add(unProductoFellote.Nombre);
-            }
-
-            
+            mIdentificador.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -102,6 +78,7 @@ namespace Proyecto.vistas
                 producto.Stock = int.Parse(mStock.Text);
                 producto.idTipo = mCurrentTipo.Identificador;
                 producto.idModelo = mCurrentModelo.Identificador;
+                producto.Unitalla = mTieneTalla.Checked;
                 if (producto.Precio < producto.Costo)
                 {
                     notificationMesagess.showTitleAndMessage("Error", "Es ilogico que el precio sea menor al costo.");
@@ -110,6 +87,8 @@ namespace Proyecto.vistas
 
                 mBusinessController.agregarProducto(producto, mCurrentTipo, mCurrentModelo);
             }
+
+            onReloadData();
         }
 
         private void mTipoSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,8 +115,16 @@ namespace Proyecto.vistas
             producto.Costo = float.Parse(mCosto.Text);
             producto.Precio = float.Parse(mPrecio.Text);
             producto.Stock = int.Parse(mStock.Text);
+            producto.Unitalla = mTieneTalla.Checked;
+            if (producto.Precio < producto.Costo)
+            {
+                notificationMesagess.showTitleAndMessage("Error", "Es ilogico que el precio sea menor al costo.");
+                return;
+            }
 
             mBusinessController.modificarProducto(producto);
+
+            onReloadData();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -149,6 +136,8 @@ namespace Proyecto.vistas
             mStock.Text = mCurrentProducto != null ? mCurrentProducto.Stock.ToString() : "";
             
             //TODO clear and setup focus to combo box
+
+            onReloadData();
         }
 
         private void mProductoSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -160,8 +149,104 @@ namespace Proyecto.vistas
             mCosto.Text = mCurrentProducto != null ? mCurrentProducto.Costo.ToString() : "";
             mPrecio.Text = mCurrentProducto != null ? mCurrentProducto.Precio.ToString() : "";
             mStock.Text = mCurrentProducto != null ? mCurrentProducto.Stock.ToString() : "";
+            mTieneTalla.Checked = mCurrentProducto != null ? mCurrentProducto.Unitalla : false;
+
+            
 
             //TODO clear and setup focus to combo box
+            onReloadData();
+
         }
+
+        public void onReloadData()
+        {
+            mTipoSelector.Items.Clear();
+            mModeloSelector.Items.Clear();
+            mProductoSelector.Items.Clear();
+
+            mTiposList = null;
+            mModeloList = null;
+            mProductoList = null;
+            mCurrentTipo = null;
+            mCurrentModelo = null;
+            mCurrentProducto = null;
+
+            mTiposList = mTipoController.obtenerTodosLosTiposDisponibles();
+
+            //Iteras y pones valores
+            foreach (Tipo unTipoPitero in mTiposList)
+            {
+                mTipoSelector.Items.Add(unTipoPitero.Nombre);
+            }
+
+            //El backend hace el query 
+            mModeloList = mModeloController.obtenerTodosLosModelosDisponibles();
+            //Iteras y pones valores
+            foreach (Modelo unModeloCulero in mModeloList)
+            {
+                mModeloSelector.Items.Add(unModeloCulero.Talla);
+            }
+
+            //El backend hace el query 
+            mProductoList = mBusinessController.obtenerListaDeProductos();
+            //Iteras y pones valores
+            foreach (Producto unProductoFellote in mProductoList)
+            {
+                mProductoSelector.Items.Add(unProductoFellote.Nombre);
+            }
+        }
+
+        private void mNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void mStock_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+
+            if (mStock.Text.Length > 3)
+            {
+                MessageBox.Show("Ha exedido el limite de 9999 piezas", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void mCosto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void mPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
     }
 }

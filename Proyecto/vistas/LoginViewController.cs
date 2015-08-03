@@ -34,7 +34,7 @@ namespace Proyecto.vistas
 
         private void mLogin_Click(object sender, EventArgs e)
         {
-            if (mLogin.Text == Constantes.USERNAME && mPassword.Text == Constantes.USERNAME)
+            if (mUsername.Text == Constantes.USERNAME && mPassword.Text == Constantes.PASSOWORD)
             {
                 mMasterViewController.usuarioAutentificado();
             }

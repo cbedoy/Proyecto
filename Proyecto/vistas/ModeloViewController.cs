@@ -12,7 +12,7 @@ using Proyecto.modelos;
 
 namespace Proyecto.vistas
 {
-    public partial class ModeloViewController : UserControl
+    public partial class ModeloViewController : UserControl, IViewController
     {
         private ModeloController mBusinessController;
 
@@ -32,12 +32,6 @@ namespace Proyecto.vistas
 
         private void ModeloViewController_Load(object sender, EventArgs e)
         {
-            mModeloList = mBusinessController.obtenerTodosLosModelosDisponibles();
-
-            foreach (Modelo elModeloPedorro in mModeloList)
-            {
-                mModeloSelector.Items.Add(elModeloPedorro.Talla);
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -46,6 +40,11 @@ namespace Proyecto.vistas
             modelo.Talla = mNombre.Text;
 
             mBusinessController.agregarUnNuevoModelo(modelo);
+
+            onReloadData();
+
+            mNombre.Text = String.Empty;
+            mIdentificador.Text = String.Empty;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -55,21 +54,59 @@ namespace Proyecto.vistas
             modelo.Talla = mNombre.Text;
 
             mBusinessController.modificarUnModelo(modelo);
+
+            onReloadData();
+
+            mNombre.Text = String.Empty;
+            mIdentificador.Text = String.Empty;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             mNombre.Text = mCurrentModelo != null ? mCurrentModelo.Talla.ToString() : "";
             mIdentificador.Text = mCurrentModelo != null ? mCurrentModelo.Identificador.ToString() : "";
+
+            onReloadData();
         }
 
-        private void mModeloSelector_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void onReloadData()
         {
-            mCurrentModelo = mModeloList.ElementAt(mModeloSelector.SelectedIndex);
+            mCurrentModelo = null;
 
-            mNombre.Text = mCurrentModelo != null ? mCurrentModelo.Talla.ToString() : "";
-            mIdentificador.Text = mCurrentModelo != null ? mCurrentModelo.Identificador.ToString() : "";
-  
+            mModeloList = mBusinessController.obtenerTodosLosModelosDisponibles();
+
+            mIdentificador.Enabled = false;
+
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = mModeloList;
+            dataGridView1.ReadOnly = true;
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                if (dataGridView1.Rows[e.RowIndex].DataBoundItem != null)
+                {
+                    mCurrentModelo = (Modelo)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+
+                    mNombre.Text = mCurrentModelo != null ? mCurrentModelo.Talla.ToString() : "";
+                    mIdentificador.Text = mCurrentModelo != null ? mCurrentModelo.Identificador.ToString() : "";
+                }
+
+            }
+        }
+
+        private void mNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
     }
 }

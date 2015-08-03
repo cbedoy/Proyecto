@@ -14,7 +14,7 @@ using Proyecto.servicios;
 
 namespace Proyecto.vistas
 {
-    public partial class VentaViewController : UserControl
+    public partial class VentaViewController : UserControl, IViewController
     {
         private VentaController mBusinessController;
         private ProductoController mProductoController;
@@ -27,6 +27,8 @@ namespace Proyecto.vistas
         private Producto mProductoActualSeleccionado;
 
         private float mTotalAPagar;
+
+        private bool isPresented;
 
         public void setBusinessController(VentaController controller)
         {
@@ -57,7 +59,7 @@ namespace Proyecto.vistas
 
             DateTime today = DateTime.Today;
 
-            mFecha.Text = String.Format("The current date and time: {0:MM/dd/yy H:mm:ss}", today);
+            mFecha.Text = String.Format("A la fecha: {0:MM/dd/yy}", today);
 
             mCurrentVenta = new Venta();
             mCurrentVenta.Fecha = today;
@@ -201,6 +203,16 @@ namespace Proyecto.vistas
 
         }
 
-        
+
+
+        public void onReloadData()
+        {
+
+        }
+
+        public bool didPressented()
+        {
+            return true;
+        }
     }
 }

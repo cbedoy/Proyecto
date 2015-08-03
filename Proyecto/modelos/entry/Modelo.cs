@@ -9,10 +9,10 @@ namespace Proyecto.modelos
     public class Modelo
     {
         //Identificador autoincremental
-        public int Identificador;
+        public int Identificador {get; set;}
         //Sirve para deficinir la talla del producto
         //En teoria si es una bolsa no tiene talla,
         //En el backend esta la magia :)
-        public String Talla;
+        public String Talla {get; set;}
     }
 }

@@ -57,6 +57,7 @@
             this.mNombre.Name = "mNombre";
             this.mNombre.Size = new System.Drawing.Size(288, 29);
             this.mNombre.TabIndex = 21;
+            this.mNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mNombre_KeyPress);
             // 
             // mIdentificador
             // 
@@ -147,6 +148,8 @@
             this.mStock.Name = "mStock";
             this.mStock.Size = new System.Drawing.Size(142, 29);
             this.mStock.TabIndex = 23;
+            this.mStock.TextChanged += new System.EventHandler(this.mStock_TextChanged);
+            this.mStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mStock_KeyPress);
             // 
             // label5
             // 
@@ -165,6 +168,7 @@
             this.mCosto.Name = "mCosto";
             this.mCosto.Size = new System.Drawing.Size(288, 29);
             this.mCosto.TabIndex = 25;
+            this.mCosto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mCosto_KeyPress);
             // 
             // label6
             // 
@@ -183,6 +187,7 @@
             this.mPrecio.Name = "mPrecio";
             this.mPrecio.Size = new System.Drawing.Size(288, 29);
             this.mPrecio.TabIndex = 27;
+            this.mPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mPrecio_KeyPress);
             // 
             // label7
             // 
@@ -249,6 +254,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mTieneTalla);
             this.Controls.Add(this.mModeloSelector);
             this.Controls.Add(this.label9);
@@ -270,7 +277,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "ProductoViewController";
-            this.Size = new System.Drawing.Size(600, 466);
+            this.Size = new System.Drawing.Size(598, 464);
             this.Load += new System.EventHandler(this.ProductoViewController_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -38,9 +38,11 @@ namespace Proyecto.controladores
 
         public void modificarProducto(Producto producto)
         {
-            String sql = "update Producto set Nombre = @Nombre, Stock = @Stock, Costo = @Costo, Precio = @Precio";
+            String sql = "update Producto set Nombre = @Nombre, Stock = @Stock, Costo = @Costo, Precio = @Precio, TieneTalla = @TieneTalla where idProducto = @id";
 
             MySqlCommand command = new MySqlCommand(sql);
+            command.Parameters.Add("@id", producto.Identificador);
+            command.Parameters.Add("@TieneTalla", producto.Unitalla);
             command.Parameters.Add("@Nombre", producto.Nombre);
             command.Parameters.Add("@Stock", producto.Stock);
             command.Parameters.Add("@Costo", producto.Costo);

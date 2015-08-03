@@ -45,64 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="basura\Acerca.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Acerca.Designer.cs">
-      <DependentUpon>Acerca.cs</DependentUpon>
-    </Compile>
     <Compile Include="controladores\AbstractController.cs" />
     <Compile Include="controladores\master\MasterController.cs" />
     <Compile Include="controladores\ProductoController.cs" />
     <Compile Include="controladores\ModeloController.cs" />
     <Compile Include="controladores\TipoController.cs" />
     <Compile Include="controladores\VentaController.cs" />
-    <Compile Include="basura\Corte_caja.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Corte_caja.Designer.cs">
-      <DependentUpon>Corte_caja.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Eliminar_mercancia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Eliminar_mercancia.Designer.cs">
-      <DependentUpon>Eliminar_mercancia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\login.Designer.cs">
-      <DependentUpon>login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Gestion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Gestion.Designer.cs">
-      <DependentUpon>Gestion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Inicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Inicio.Designer.cs">
-      <DependentUpon>Inicio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Inventario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Inventario.Designer.cs">
-      <DependentUpon>Inventario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Menuprincipal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Menuprincipal.Designer.cs">
-      <DependentUpon>Menuprincipal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InventoryViewController.cs">
+    <Compile Include="vistas\CorteDiaViewController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InventoryViewController.Designer.cs">
+    <Compile Include="vistas\CorteDiaViewController.Designer.cs">
+      <DependentUpon>CorteDiaViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\CorteMensualViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vistas\CorteMensualViewController.Designer.cs">
+      <DependentUpon>CorteMensualViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\InventoryViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vistas\InventoryViewController.Designer.cs">
       <DependentUpon>InventoryViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="modelos\decorated\ProductoVenta.cs" />
@@ -112,71 +76,12 @@
     <Compile Include="modelos\entry\Producto.cs" />
     <Compile Include="modelos\entry\Tipo.cs" />
     <Compile Include="modelos\entry\Venta.cs" />
-    <Compile Include="basura\Modificar_mercancia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Modificar_mercancia.Designer.cs">
-      <DependentUpon>Modificar_mercancia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Nota_ventas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Nota_ventas.Designer.cs">
-      <DependentUpon>Nota_ventas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Nueva_mercancia.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Nueva_mercancia.Designer.cs">
-      <DependentUpon>Nueva_mercancia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Nuevo_articulo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Nuevo_articulo.Designer.cs">
-      <DependentUpon>Nuevo_articulo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="basura\Reportes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Reportes.Designer.cs">
-      <DependentUpon>Reportes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Reporte_ganancias.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Reporte_ganancias.Designer.cs">
-      <DependentUpon>Reporte_ganancias.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Reporte_ventas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Reporte_ventas.Designer.cs">
-      <DependentUpon>Reporte_ventas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Salir.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Salir.Designer.cs">
-      <DependentUpon>Salir.cs</DependentUpon>
-    </Compile>
     <Compile Include="servicios\Constantes.cs" />
     <Compile Include="servicios\MySQLContection.cs" />
     <Compile Include="servicios\NotificationMessagess.cs" />
-    <Compile Include="basura\Vender.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Vender.Designer.cs">
-      <DependentUpon>Vender.cs</DependentUpon>
-    </Compile>
-    <Compile Include="basura\Ventas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="basura\Ventas.Designer.cs">
-      <DependentUpon>Ventas.cs</DependentUpon>
-    </Compile>
+    <Compile Include="servicios\IViewController.cs" />
     <Compile Include="vistas\LoginViewController.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -213,40 +118,13 @@
     <Compile Include="vistas\VentaViewController.Designer.cs">
       <DependentUpon>VentaViewController.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="basura\Corte_caja.resx">
-      <DependentUpon>Corte_caja.cs</DependentUpon>
+    <EmbeddedResource Include="vistas\CorteDiaViewController.resx">
+      <DependentUpon>CorteDiaViewController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="basura\Eliminar_mercancia.resx">
-      <DependentUpon>Eliminar_mercancia.cs</DependentUpon>
+    <EmbeddedResource Include="vistas\CorteMensualViewController.resx">
+      <DependentUpon>CorteMensualViewController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="basura\login.resx">
-      <DependentUpon>login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Gestion.resx">
-      <DependentUpon>Gestion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Inicio.resx">
-      <DependentUpon>Inicio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Inventario.resx">
-      <DependentUpon>Inventario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Menuprincipal.resx">
-      <DependentUpon>Menuprincipal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Modificar_mercancia.resx">
-      <DependentUpon>Modificar_mercancia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Nota_ventas.resx">
-      <DependentUpon>Nota_ventas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Nueva_mercancia.resx">
-      <DependentUpon>Nueva_mercancia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Nuevo_articulo.resx">
-      <DependentUpon>Nuevo_articulo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InventoryViewController.resx">
+    <EmbeddedResource Include="vistas\InventoryViewController.resx">
       <DependentUpon>InventoryViewController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -259,21 +137,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="basura\Reportes.resx">
-      <DependentUpon>Reportes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Reporte_ganancias.resx">
-      <DependentUpon>Reporte_ganancias.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Reporte_ventas.resx">
-      <DependentUpon>Reporte_ventas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Vender.resx">
-      <DependentUpon>Vender.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="basura\Ventas.resx">
-      <DependentUpon>Ventas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="vistas\LoginViewController.resx">
       <DependentUpon>LoginViewController.cs</DependentUpon>
     </EmbeddedResource>

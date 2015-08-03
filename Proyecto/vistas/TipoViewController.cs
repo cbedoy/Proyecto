@@ -12,7 +12,7 @@ using Proyecto.modelos;
 
 namespace Proyecto.vistas
 {
-    public partial class TipoViewController : UserControl
+    public partial class TipoViewController : UserControl, IViewController
     {
         private TipoController mController;
 
@@ -32,17 +32,6 @@ namespace Proyecto.vistas
 
         private void TipoViewController_Load(object sender, EventArgs e)
         {
-            //Antes de inciar la ventana o de recargar la venta
-            //Se llena en automatico con informacion sobre los tipos
-
-            mListaTipos = mController.obtenerTodosLosTiposDisponibles();
-
-            foreach (Tipo elTipo in mListaTipos)
-            {
-                //Se llena el combo box con elementos
-                //Donde los elementos son el nombre del tipo...
-                mTipoSelector.Items.Add(elTipo.Nombre);
-            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -53,6 +42,8 @@ namespace Proyecto.vistas
             tipo.Nombre = mNombre.Text;
 
             mController.agregarUnNuevoTipo(tipo);
+
+            onReloadData();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,7 +54,9 @@ namespace Proyecto.vistas
             tipo.Descripcion = mDescripcion.Text;
             tipo.Nombre = mNombre.Text;
 
-            mController.agregarUnNuevoTipo(tipo);
+            mController.modifcarUnTipo(tipo);
+
+            onReloadData();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -77,24 +70,70 @@ namespace Proyecto.vistas
             mDescripcion.Text = mCurrentTipo != null ? mCurrentTipo.Descripcion.ToString() : "";
 
             mNombre.Text = mCurrentTipo != null ? mCurrentTipo.Nombre.ToString() : "";
+
+            onReloadData();
             
         }
 
         private void mTipoSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(mListaTipos != null && mListaTipos.Count > 0){
+        }
 
-                //Obvio esto...
+        public void onReloadData()
+        {
+            mCurrentTipo = null;
 
-                mCurrentTipo = mListaTipos.ElementAt(mTipoSelector.SelectedIndex);
+            mListaTipos = mController.obtenerTodosLosTiposDisponibles();
 
-                mIdentificador.Text = mCurrentTipo != null ? mCurrentTipo.Identificador.ToString() : "";
 
-                mDescripcion.Text = mCurrentTipo != null ? mCurrentTipo.Descripcion.ToString() : "";
+            mGridView.DataSource = null;
+            mGridView.DataSource = mListaTipos;
 
-                mNombre.Text = mCurrentTipo != null ? mCurrentTipo.Nombre.ToString() : "";
+            mIdentificador.Enabled = false;
+        }
 
+        private void mGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void mGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+
+                if (mGridView.Rows[e.RowIndex].DataBoundItem != null)
+                {
+                    mCurrentTipo = (Tipo)mGridView.Rows[e.RowIndex].DataBoundItem;
+
+                    mIdentificador.Text = mCurrentTipo != null ? mCurrentTipo.Identificador.ToString() : "";
+
+                    mDescripcion.Text = mCurrentTipo != null ? mCurrentTipo.Descripcion.ToString() : "";
+
+                    mNombre.Text = mCurrentTipo != null ? mCurrentTipo.Nombre.ToString() : "";
+                }
             }
         }
+
+        private void mDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void mNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
     }
 }

@@ -44,12 +44,25 @@ namespace Proyecto.controladores
             ventaViewController.setBusinessController(productoBusinessController);
 
             LoginViewController loginViewController = new LoginViewController();
+            loginViewController.setMasterViewController(masterViewController);
 
+            InventoryViewController inventoryViewController = new InventoryViewController();
+            inventoryViewController.setBusinessController(productoBusinessController);
+
+            CorteDiaViewController corteDiaViewController = new CorteDiaViewController();
+            corteDiaViewController.setBusinessController(ventaBusinessController);
+
+            CorteMensualViewController corteMensualViewController = new CorteMensualViewController();
+            corteMensualViewController.setBusinessController(ventaBusinessController);
+            
             masterViewController.setViewController(modeloViewController);
+            masterViewController.setViewController(inventoryViewController);
             masterViewController.setViewController(tipoViewController);
             masterViewController.setViewController(productoViewController);
             masterViewController.setViewController(ventaViewController);
             masterViewController.setViewController(loginViewController);
+            masterViewController.setViewController(corteDiaViewController);
+            masterViewController.setViewController(corteMensualViewController);
 
             masterViewController.init();
         }

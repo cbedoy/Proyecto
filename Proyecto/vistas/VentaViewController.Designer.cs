@@ -265,6 +265,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mConfirmarPagoAction);
             this.Controls.Add(this.mPagoCliente);
             this.Controls.Add(this.label13);
@@ -287,7 +289,7 @@
             this.Controls.Add(this.mFecha);
             this.Controls.Add(this.label1);
             this.Name = "VentaViewController";
-            this.Size = new System.Drawing.Size(671, 533);
+            this.Size = new System.Drawing.Size(669, 531);
             this.Load += new System.EventHandler(this.VentaViewController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mDetalleVentaGridView)).EndInit();
             this.ResumeLayout(false);
