@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Proyecto.modelos;
+using Proyecto.servicios;
 using Proyecto.vistas;
 using System;
 using System.Collections.Generic;
@@ -83,7 +84,10 @@ namespace Proyecto.controladores
 
             String fechaABuscar = String.Format("{0:yyyy-MM-dd}", today);
 
-            String sql = "select * from Venta WHERE Fecha ==  '"+fechaABuscar+"';";
+            String sql = "select * from Venta WHERE Fecha =  '"+fechaABuscar+"';";
+
+            
+            //String sql = "select * from Venta where Fecha = '2015-08-01';";
 
             MySqlCommand command = new MySqlCommand(sql);
 
@@ -100,6 +104,14 @@ namespace Proyecto.controladores
                     venta.Fecha = reader.GetDateTime(1);
                     venta.CostoBruto = reader.GetFloat(2);
                     venta.PrecioBruto = reader.GetFloat(3);
+                    venta.GananciaBruta = venta.PrecioBruto * (Constantes.IVA + 1) - venta.CostoBruto;
+
+                    venta.Costo = String.Format("$ {0:0.00} pesos", venta.CostoBruto);
+                    venta.Precio = String.Format("$ {0:0.00} pesos", venta.PrecioBruto);
+                    venta.PrecioMasIVA = String.Format("$ {0:0.00} pesos", venta.PrecioBruto * (Constantes.IVA + 1));
+                    venta.Ganancia = String.Format("$ {0:0.00} pesos", venta.GananciaBruta);
+
+
                     ventas.Add(venta);
                 }
             }
@@ -138,6 +150,14 @@ namespace Proyecto.controladores
                     venta.Fecha = reader.GetDateTime(1);
                     venta.CostoBruto = reader.GetFloat(2);
                     venta.PrecioBruto = reader.GetFloat(3);
+
+                    venta.GananciaBruta = venta.PrecioBruto * (Constantes.IVA + 1) - venta.CostoBruto;
+
+                    venta.Costo = String.Format("$ {0:0.00} pesos", venta.CostoBruto);
+                    venta.Precio = String.Format("$ {0:0.00} pesos", venta.PrecioBruto);
+                    venta.PrecioMasIVA = String.Format("$ {0:0.00} pesos", venta.PrecioBruto * (Constantes.IVA + 1));
+                    venta.Ganancia = String.Format("$ {0:0.00} pesos", venta.GananciaBruta);
+
                     ventas.Add(venta);
                 }
             }

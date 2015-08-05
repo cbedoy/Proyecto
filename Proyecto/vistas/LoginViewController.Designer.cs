@@ -28,28 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.mUsername = new System.Windows.Forms.TextBox();
             this.mPassword = new System.Windows.Forms.TextBox();
             this.mLogin = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.ErrorImage = global::Proyecto.Properties.Resources.cODICE_LOGIN;
-            this.pictureBox1.InitialImage = global::Proyecto.Properties.Resources.cODICE_LOGIN;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 17);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(159, 160);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(200, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 24);
@@ -75,26 +66,41 @@
             // 
             // mLogin
             // 
+            this.mLogin.BackColor = System.Drawing.Color.DarkGreen;
             this.mLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mLogin.ForeColor = System.Drawing.Color.Honeydew;
             this.mLogin.Location = new System.Drawing.Point(203, 138);
             this.mLogin.Name = "mLogin";
             this.mLogin.Size = new System.Drawing.Size(176, 38);
             this.mLogin.TabIndex = 4;
             this.mLogin.Text = "Entrar";
-            this.mLogin.UseVisualStyleBackColor = true;
+            this.mLogin.UseVisualStyleBackColor = false;
             this.mLogin.Click += new System.EventHandler(this.mLogin_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = global::Proyecto.Properties.Resources.cODICE_LOGIN;
+            this.pictureBox1.Image = global::Proyecto.Properties.Resources.cODICE_LOGIN;
+            this.pictureBox1.InitialImage = global::Proyecto.Properties.Resources.cODICE_LOGIN;
+            this.pictureBox1.Location = new System.Drawing.Point(15, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(165, 159);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // LoginViewController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LimeGreen;
+            this.BackColor = System.Drawing.Color.Snow;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.mLogin);
             this.Controls.Add(this.mPassword);
             this.Controls.Add(this.mUsername);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.Name = "LoginViewController";
             this.Size = new System.Drawing.Size(400, 192);
             this.Load += new System.EventHandler(this.LoginViewController_Load);

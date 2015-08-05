@@ -49,11 +49,11 @@ namespace Proyecto.servicios
 
                 sqlCommand.ExecuteNonQuery();
 
-                notificationMessages.showTitleAndMessage("Exito ", notification[0]);
+                notificationMessages.showTitleAndMessage("Exito", notification[0]);
             }
             catch (Exception e)
             {
-                notificationMessages.showTitleAndMessage("Error ", notification[1] + " " + e.Message);
+                notificationMessages.showTitleAndMessage("Error", notification[1] + " " + e.Message);
             }
 
         }

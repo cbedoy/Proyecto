@@ -11,7 +11,11 @@ namespace Proyecto.servicios
     {
         public void showTitleAndMessage(String title, String message)
         {
-            MessageBox.Show(title, message); 
+            MessageBox.Show(
+                message, 
+                title == "Error" ? "Oops!!" : "Bien Hecho!!", 
+                MessageBoxButtons.OK, 
+                title == "Error" ? MessageBoxIcon.Error : MessageBoxIcon.None);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace Proyecto.modelos.decorated
 {
     public class ProductoVenta
     {
-        public int Identificador;
-        public String Nombre;
-        public int Cantidad;
-        public float Costo;
-        public float Precio;
+        public int Identificador {get; set;}
+        public String Nombre { get; set; }
+        public int Cantidad { get; set; }
+        public float Costo { get; set; }
+        public float Precio { get; set; }
     }
 }

@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.mTitleView = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.mVentasGridView = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.mCostoTotal = new System.Windows.Forms.Label();
@@ -39,7 +39,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.mGanancias = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mVentasGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,16 +62,16 @@
             this.mTitleView.TabIndex = 1;
             this.mTitleView.Text = "00/00/0000";
             // 
-            // dataGridView1
+            // mVentasGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 60);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(510, 322);
-            this.dataGridView1.TabIndex = 2;
+            this.mVentasGridView.AllowUserToAddRows = false;
+            this.mVentasGridView.AllowUserToDeleteRows = false;
+            this.mVentasGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mVentasGridView.Location = new System.Drawing.Point(22, 60);
+            this.mVentasGridView.Name = "mVentasGridView";
+            this.mVentasGridView.ReadOnly = true;
+            this.mVentasGridView.Size = new System.Drawing.Size(510, 322);
+            this.mVentasGridView.TabIndex = 2;
             // 
             // label3
             // 
@@ -167,13 +167,13 @@
             this.Controls.Add(this.mCostoTotal);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.mVentasGridView);
             this.Controls.Add(this.mTitleView);
             this.Controls.Add(this.label1);
             this.Name = "CorteDiaViewController";
             this.Size = new System.Drawing.Size(553, 547);
             this.Load += new System.EventHandler(this.CorteDiaViewController_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mVentasGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,7 +183,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label mTitleView;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView mVentasGridView;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label mCostoTotal;

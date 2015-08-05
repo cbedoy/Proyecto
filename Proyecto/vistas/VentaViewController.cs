@@ -149,12 +149,14 @@ namespace Proyecto.vistas
 
             }
 
+            __subtotal *= cantidad;
+
             //Multiplicas el IVA definido en la clase constantes
             //Por el subtotal que lleves
             //Por ejemplo 0.15 * 100 te daría 15 pesos
             __iva = Constantes.IVA * __subtotal;
 
-            __total = __iva + __total;
+            __total = __iva + __subtotal;
 
             mSubTotal.Text = String.Format("$ {0:0.00} pesos", __subtotal);
             mIVA.Text = String.Format("$ {0:0.00} pesos", __iva);

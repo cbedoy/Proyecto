@@ -58,6 +58,14 @@ namespace Proyecto.vistas
 
             mGanancias.Text = String.Format("$ {0:0.00} pesos", __ganancias);
 
+            DateTime today = DateTime.Today;
+
+            String fechaABuscar = String.Format("{0:yyyy-MM-dd}", today);
+
+            mTitleView.Text = fechaABuscar;
+
+            mVentasGridView.DataSource = ventas;
+
         }
     }
 }

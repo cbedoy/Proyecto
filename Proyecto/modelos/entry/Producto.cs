@@ -19,8 +19,6 @@ namespace Proyecto.modelos
         //Precio previo del producto //En otra parte decoro para obtener el precio + IVA 
         //Este se crea en tiempo de ejecusion no tiene caso guardarlo en la DDB
         public float Precio { get; set; }
-
-        public bool Unitalla { get; set; }
         //Tipo al que esta asociado osea no recuerdo bien que pedo
         //Pero podia ser Huarache, Bolsa bla bla
         public int idTipo;

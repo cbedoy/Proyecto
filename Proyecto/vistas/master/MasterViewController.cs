@@ -163,5 +163,10 @@ namespace Proyecto.vistas
         {
             presentViewController(mCorteMesViewController);
         }
+
+        private void mSalirAction_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

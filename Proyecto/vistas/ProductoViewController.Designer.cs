@@ -47,7 +47,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.mModeloSelector = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.mTieneTalla = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // mNombre
@@ -146,7 +145,7 @@
             this.mStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mStock.Location = new System.Drawing.Point(286, 153);
             this.mStock.Name = "mStock";
-            this.mStock.Size = new System.Drawing.Size(142, 29);
+            this.mStock.Size = new System.Drawing.Size(288, 29);
             this.mStock.TabIndex = 23;
             this.mStock.TextChanged += new System.EventHandler(this.mStock_TextChanged);
             this.mStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mStock_KeyPress);
@@ -239,24 +238,12 @@
             this.label9.TabIndex = 30;
             this.label9.Text = "Seleccione Modelo";
             // 
-            // mTieneTalla
-            // 
-            this.mTieneTalla.AutoSize = true;
-            this.mTieneTalla.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTieneTalla.Location = new System.Drawing.Point(451, 153);
-            this.mTieneTalla.Name = "mTieneTalla";
-            this.mTieneTalla.Size = new System.Drawing.Size(123, 28);
-            this.mTieneTalla.TabIndex = 33;
-            this.mTieneTalla.Text = "Tiene Talla";
-            this.mTieneTalla.UseVisualStyleBackColor = true;
-            // 
             // ProductoViewController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.mTieneTalla);
             this.Controls.Add(this.mModeloSelector);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.mTipoSelector);
@@ -305,6 +292,5 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox mModeloSelector;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox mTieneTalla;
     }
 }

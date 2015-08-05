@@ -78,7 +78,6 @@ namespace Proyecto.vistas
                 producto.Stock = int.Parse(mStock.Text);
                 producto.idTipo = mCurrentTipo.Identificador;
                 producto.idModelo = mCurrentModelo.Identificador;
-                producto.Unitalla = mTieneTalla.Checked;
                 if (producto.Precio < producto.Costo)
                 {
                     notificationMesagess.showTitleAndMessage("Error", "Es ilogico que el precio sea menor al costo.");
@@ -93,17 +92,23 @@ namespace Proyecto.vistas
 
         private void mTipoSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(mTiposList != null && mTiposList.Count > 0)
+            if (mTipoSelector.SelectedIndex >= 0)
             {
-                mCurrentTipo = mTiposList.ElementAt(mTipoSelector.SelectedIndex);
+                if (mTiposList != null && mTiposList.Count > 0)
+                {
+                    mCurrentTipo = mTiposList.ElementAt(mTipoSelector.SelectedIndex);
+                }
             }
         }
 
         private void mModeloSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mModeloList != null && mModeloList.Count > 0)
+            if (mModeloSelector.SelectedIndex >= 0)
             {
-                mCurrentModelo = mModeloList.ElementAt(mModeloSelector.SelectedIndex);
+                if (mModeloList != null && mModeloList.Count > 0)
+                {
+                    mCurrentModelo = mModeloList.ElementAt(mModeloSelector.SelectedIndex);
+                }
             }
         }
 
@@ -115,7 +120,6 @@ namespace Proyecto.vistas
             producto.Costo = float.Parse(mCosto.Text);
             producto.Precio = float.Parse(mPrecio.Text);
             producto.Stock = int.Parse(mStock.Text);
-            producto.Unitalla = mTieneTalla.Checked;
             if (producto.Precio < producto.Costo)
             {
                 notificationMesagess.showTitleAndMessage("Error", "Es ilogico que el precio sea menor al costo.");
@@ -134,8 +138,14 @@ namespace Proyecto.vistas
             mCosto.Text = mCurrentProducto != null ? mCurrentProducto.Costo.ToString() : "";
             mPrecio.Text = mCurrentProducto != null ? mCurrentProducto.Precio.ToString() : "";
             mStock.Text = mCurrentProducto != null ? mCurrentProducto.Stock.ToString() : "";
-            
-            //TODO clear and setup focus to combo box
+
+            mModeloSelector.SelectedItem = null;
+
+            mTipoSelector.SelectedItem = null;
+
+            mTipoSelector.SelectedText = null;
+
+            mModeloSelector.SelectedText = null;
 
             onReloadData();
         }
@@ -149,9 +159,26 @@ namespace Proyecto.vistas
             mCosto.Text = mCurrentProducto != null ? mCurrentProducto.Costo.ToString() : "";
             mPrecio.Text = mCurrentProducto != null ? mCurrentProducto.Precio.ToString() : "";
             mStock.Text = mCurrentProducto != null ? mCurrentProducto.Stock.ToString() : "";
-            mTieneTalla.Checked = mCurrentProducto != null ? mCurrentProducto.Unitalla : false;
 
-            
+            foreach (Tipo tipo in mTiposList)
+            {
+                if (tipo.Identificador == mCurrentProducto.idTipo)
+                {
+                    mTipoSelector.SelectedText = tipo.Nombre;
+                    break;
+                }
+            }
+
+            foreach (Modelo modelo in mModeloList)
+            {
+                if (modelo.Identificador == mCurrentProducto.idModelo)
+                {
+                    mModeloSelector.SelectedText = modelo.Talla;
+                    break;
+                }
+            }
+
+
 
             //TODO clear and setup focus to combo box
             onReloadData();
@@ -198,7 +225,7 @@ namespace Proyecto.vistas
 
         private void mNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
             {
                 MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
