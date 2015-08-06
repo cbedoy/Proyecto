@@ -129,6 +129,7 @@
             this.mDetalleVentaGridView.Name = "mDetalleVentaGridView";
             this.mDetalleVentaGridView.Size = new System.Drawing.Size(635, 172);
             this.mDetalleVentaGridView.TabIndex = 7;
+            this.mDetalleVentaGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mDetalleVentaGridView_CellClick);
             // 
             // label5
             // 

@@ -28,6 +28,22 @@ namespace Proyecto.controladores
             venta = obtenerLaUltimaVenta();
 
             anadirLosContenidosDelTicket(venta, contenidoVenta);
+
+            diminuirStock(contenidoVenta);
+        }
+
+        private void diminuirStock(List<ContenidoVenta> contenidoVenta)
+        {
+            foreach(ContenidoVenta contenido in contenidoVenta){
+                String sql = "update Producto set Stock = Stock - @Vendida where idProducto = @id;";
+
+                MySqlCommand command = new MySqlCommand(sql);
+
+                command.Parameters.Add("@Vendida", contenido.cantidad);
+                command.Parameters.Add("@id", contenido.idProducto);
+
+                mSQLService.performNoQueryWithSQLComandAndNotification(command);
+            }
         }
 
         private void anadirLosContenidosDelTicket(Venta venta, List<ContenidoVenta> contenidoVenta)

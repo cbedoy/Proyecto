@@ -21,14 +21,15 @@ namespace Proyecto.vistas
 
         private Venta mCurrentVenta;
         private List<Producto> mProductoList;
-        private List<Producto> mProductosSeleccionados;
-        private List<ProductoVenta> mProductosSeleccionadosVenta;
 
         private Producto mProductoActualSeleccionado;
 
         private float mTotalAPagar;
 
         private bool isPresented;
+
+        private Dictionary<int, Producto> mDiccionarioProductosAVender;
+        private Dictionary<int, ProductoVenta> mDiccionarioProductosARepresentar;
 
         public void setBusinessController(VentaController controller)
         {
@@ -47,34 +48,21 @@ namespace Proyecto.vistas
 
         private void VentaViewController_Load(object sender, EventArgs e)
         {
-            mProductoList = mProductoController.obtenerListaDeProductos();
-
-            foreach (Producto unProducto in mProductoList)
-            {
-                mProductoSelector.Items.Add(unProducto.Nombre);
-            }
-
-            mProductosSeleccionados = new List<Producto>();
-            mProductosSeleccionadosVenta = new List<ProductoVenta>();
-
-            DateTime today = DateTime.Today;
-
-            mFecha.Text = String.Format("A la fecha: {0:MM/dd/yy}", today);
-
-            mCurrentVenta = new Venta();
-            mCurrentVenta.Fecha = today;
-
         }
 
         private void mProductoSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mProductoActualSeleccionado = mProductoList.ElementAt(mProductoSelector.SelectedIndex);
-
-            mCantidadSelector.Items.Clear();
-
-            for (int i = 0; i < mProductoActualSeleccionado.Stock; i++)
+            if (mProductoSelector.SelectedItem != null)
             {
-                mCantidadSelector.Items.Add((i+1)+"");
+                mProductoActualSeleccionado = mProductoList.ElementAt(mProductoSelector.SelectedIndex);
+
+                mCantidadSelector.Items.Clear();
+
+                for (int i = 0; i < mProductoActualSeleccionado.Stock; i++)
+                {
+                    mCantidadSelector.Items.Add((i + 1) + "");
+                }
+
             }
         }
 
@@ -105,27 +93,59 @@ namespace Proyecto.vistas
 
         private void mConfirmAction_Click(object sender, EventArgs e)
         {
-            //Sacas la cantidad de productos que se van a vender segun el producto seleccionado
-            int cantidad = mCantidadSelector.SelectedIndex + 1;
+            if (mCantidadSelector.SelectedItem != null)
+            {
+                //Sacas la cantidad de productos que se van a vender segun el producto seleccionado
+                int cantidad = int.Parse(mCantidadSelector.SelectedItem.ToString());
 
-            //Añades a esa lista de productos seleecionado el producto
-            //Estos son los que envias a dar de alta en la venta
-            mProductosSeleccionados.Add(mProductoActualSeleccionado);
+                //Añades a esa lista de productos seleecionado el producto
+                //Estos son los que envias a dar de alta en la venta
 
-            //Este producto venta se va a añadir a una lista de este tipo
-            //Sirve para mostrar al usuarios los productos
-            ProductoVenta productoVenta = new ProductoVenta();
-            productoVenta.Identificador = mProductoActualSeleccionado.Identificador;
-            productoVenta.Nombre = mProductoActualSeleccionado.Nombre;
-            productoVenta.Precio = mProductoActualSeleccionado.Precio;
-            productoVenta.Costo = mProductoActualSeleccionado.Costo;
-            productoVenta.Cantidad = cantidad;
+                if (!mDiccionarioProductosAVender.ContainsKey(mProductoActualSeleccionado.Identificador))
+                {
+                    mDiccionarioProductosAVender.Add(mProductoActualSeleccionado.Identificador, mProductoActualSeleccionado);
 
-            mProductosSeleccionadosVenta.Add(productoVenta);
+                    //Este producto venta se va a añadir a una lista de este tipo
+                    //Sirve para mostrar al usuarios los productos
+                    ProductoVenta productoVenta = new ProductoVenta();
+                    productoVenta.Identificador = mProductoActualSeleccionado.Identificador;
+                    productoVenta.Nombre = mProductoActualSeleccionado.Nombre;
+                    productoVenta.Precio = mProductoActualSeleccionado.Precio;
+                    productoVenta.Costo = mProductoActualSeleccionado.Costo;
+                    productoVenta.Cantidad = cantidad;
+
+                    mDiccionarioProductosARepresentar.Add(productoVenta.Identificador, productoVenta);
+                }
+                else
+                {
+
+                    ProductoVenta productoVenta = mDiccionarioProductosARepresentar[mProductoActualSeleccionado.Identificador];
+                    productoVenta.Cantidad = cantidad;
+
+                    mDiccionarioProductosARepresentar.Remove(mProductoActualSeleccionado.Identificador);
+
+                    mDiccionarioProductosARepresentar.Add(productoVenta.Identificador, productoVenta);
+                }
+
+                refrescarLosCalculosYLaVista(cantidad);
+
+            }
+
+            mCantidadSelector.SelectedItem = null;
+
+        }
+
+        private void refrescarLosCalculosYLaVista(int cantidad)
+        {
+
+            List<ProductoVenta> elementosQueSeMuestranEnElTicket = mDiccionarioProductosARepresentar.Values.ToList();
+
+
+
 
             //Refrescas el grid view con la informacion :)
             mDetalleVentaGridView.DataSource = null;
-            mDetalleVentaGridView.DataSource = mProductosSeleccionadosVenta;
+            mDetalleVentaGridView.DataSource = elementosQueSeMuestranEnElTicket;
 
             //Tambien recalculas el Precio y costo que te aparecera en la venta
 
@@ -139,7 +159,7 @@ namespace Proyecto.vistas
             //Limpias lasvariables para evitar pedos
             mCurrentVenta.PrecioBruto = 0;
             mCurrentVenta.CostoBruto = 0;
-            foreach (Producto cadaProducto in mProductosSeleccionados)
+            foreach (ProductoVenta cadaProducto in elementosQueSeMuestranEnElTicket)
             {
                 __subtotal += cadaProducto.Precio;
 
@@ -163,17 +183,17 @@ namespace Proyecto.vistas
             mTotal.Text = String.Format("$ {0:0.00} pesos", __total);
 
             mTotalAPagar = __total;
-
         }
 
         private void mConfirmarPagoAction_Click(object sender, EventArgs e)
         {
-
+            try
+            {
                 float pago = float.Parse(mPagoCliente.Text);
 
                 if (pago < mTotalAPagar)
                 {
-                    //Error
+                    MessageBox.Show("Parece que el pago es inferior al monto a pagar", "Ooops!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -181,11 +201,22 @@ namespace Proyecto.vistas
                     //TODO imprimir pago
                     //Todo imprimir cambio
 
+                    String mensajito =
+                        "Total a Pagar " + String.Format("$ {0:0.00} pesos", mTotalAPagar) + "\n" +
+                        "Su Pago fue " + String.Format("$ {0:0.00} pesos", pago) + "\n" +
+                        "Su Cambio es " + String.Format("$ {0:0.00} pesos", cambio) + "\n";
+
+
+                    MessageBox.Show(mensajito, "Gracias por la compra!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     //En parelelo vamos a crear la ventaaquí
 
                     List<ContenidoVenta> contenidosDeLaVenta = new List<ContenidoVenta>();
 
-                    foreach(ProductoVenta unProductoDeQueSeVaAVender in mProductosSeleccionadosVenta){
+                    List<ProductoVenta> elementosQueSeMuestranEnElTicket = mDiccionarioProductosARepresentar.Values.ToList();
+
+                    foreach (ProductoVenta unProductoDeQueSeVaAVender in elementosQueSeMuestranEnElTicket)
+                    {
                         ContenidoVenta contenidoVenta = new ContenidoVenta();
                         contenidoVenta.idProducto = unProductoDeQueSeVaAVender.Identificador;
                         contenidoVenta.cantidad = unProductoDeQueSeVaAVender.Cantidad;
@@ -200,7 +231,11 @@ namespace Proyecto.vistas
 
                 }
 
-            
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show("Verifique la el monto ingresado", "Ooops!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             
 
         }
@@ -209,12 +244,69 @@ namespace Proyecto.vistas
 
         public void onReloadData()
         {
+            mProductoList = mProductoController.obtenerListaDeProductos();
 
+            mProductoSelector.Items.Clear();
+
+            mProductoSelector.SelectedItem = null;
+
+            foreach (Producto unProducto in mProductoList)
+            {
+                mProductoSelector.Items.Add(unProducto.Nombre);
+            }
+
+            mDiccionarioProductosAVender = new Dictionary<int, Producto>();
+
+            mDiccionarioProductosARepresentar = new Dictionary<int, ProductoVenta>();
+
+            DateTime today = DateTime.Today;
+
+            mFecha.Text = String.Format("A la fecha: {0:MM/dd/yy}", today);
+
+            mCurrentVenta = new Venta();
+            mCurrentVenta.Fecha = today;
+
+            mCantidadSelector.SelectedItem = null;
+            mProductoSelector.SelectedItem = null;
+
+            List<ProductoVenta> elementosQueSeMuestranEnElTicket = mDiccionarioProductosARepresentar.Values.ToList();
+
+            //Refrescas el grid view con la informacion :)
+            mDetalleVentaGridView.DataSource = null;
+            mDetalleVentaGridView.DataSource = elementosQueSeMuestranEnElTicket;
+
+            mSubTotal.Text = String.Format("$ {0:0.00} pesos", 0.0f);
+            mIVA.Text = String.Format("$ {0:0.00} pesos", 0.0f);
+            mTotal.Text = String.Format("$ {0:0.00} pesos", 0.0f);
         }
 
-        public bool didPressented()
+        private void mDetalleVentaGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            return true;
+            if (e.RowIndex != -1)
+            {
+
+                if (mDetalleVentaGridView.Rows[e.RowIndex].DataBoundItem != null)
+                {
+                    ProductoVenta productillo = (ProductoVenta)mDetalleVentaGridView.Rows[e.RowIndex].DataBoundItem;
+
+
+                    String advertenciaWe = 
+                        "¿Deseas eliminar este producto?\n\n"+
+                        "Identificador: " + productillo.Identificador + "\n\nNombre: " + productillo.Nombre + "";
+
+                    DialogResult result = MessageBox.Show(advertenciaWe, "Espera!!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+
+
+                    if (result == DialogResult.Yes)
+                    {
+                        //...
+                        mDiccionarioProductosARepresentar.Remove(productillo.Identificador);
+
+                        refrescarLosCalculosYLaVista(1);
+                    }
+                    
+                }
+            }
         }
     }
 }
